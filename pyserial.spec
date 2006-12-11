@@ -3,7 +3,7 @@
 Summary: Python serial port access library
 Name: pyserial
 Version: 2.2
-Release: 4%{?dist}
+Release: 5%{?dist}
 Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.zip
 License: Python license
 Group: Development/Libraries
@@ -38,6 +38,9 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitelib}/*
 
 %changelog
+* Tue Dec 12 2006 Paul P. Komkoff Jr <i@stingr.net>
+- rebuilt
+
 * Mon Nov  6 2006 Paul P Komkoff Jr <i@stingr.net> - 2.2-4
 - remove "export libdirname"
 
