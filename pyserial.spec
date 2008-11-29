@@ -3,7 +3,7 @@
 Summary: Python serial port access library
 Name: pyserial
 Version: 2.2
-Release: 6%{?dist}
+Release: 7%{?dist}
 Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.zip
 License: Python
 Group: Development/Libraries
@@ -38,6 +38,9 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitelib}/*
 
 %changelog
+* Sat Nov 29 2008 Ignacio Vazquez-Abrams <ivazqueznet+rpm@gmail.com> - 2.2-7
+- Rebuild for Python 2.6
+
 * Fri Aug 29 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 2.2-6
 - fix license tag
 
