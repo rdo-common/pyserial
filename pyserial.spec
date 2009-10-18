@@ -2,13 +2,13 @@
 
 Summary: Python serial port access library
 Name: pyserial
-Version: 2.2
-Release: 8%{?dist}
-Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.zip
+Version: 2.4
+Release: 1%{?dist}
+Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 License: Python
 Group: Development/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-URL: http://pyserial.sourceforge.net/
+URL: http://pyserial.sourceforge.net
 BuildRequires: python-devel
 BuildArch: noarch
 
@@ -38,6 +38,12 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitelib}/*
 
 %changelog
+* Sun Oct 18 2009 Paul P Komkoff Jr <i@stingr.net> - 2.4-1
+- new upstream version
+
+* Sun Jul 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.2-9
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
+
 * Thu Feb 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.2-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
 
