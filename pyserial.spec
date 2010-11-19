@@ -36,6 +36,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc LICENSE.txt CHANGES.txt README.txt examples
 %{python_sitelib}/*
+%{_bindir}/miniterm.py
 
 %changelog
 * Fri Nov 19 2010 Paul P. Komkoff Jr <i@stingr.net> - 2.5-1
