@@ -2,8 +2,8 @@
 
 Summary: Python serial port access library
 Name: pyserial
-Version: 2.4
-Release: 2%{?dist}
+Version: 2.5
+Release: 1%{?dist}
 Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 License: Python
 Group: Development/Libraries
@@ -38,6 +38,9 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitelib}/*
 
 %changelog
+* Fri Nov 19 2010 Paul P. Komkoff Jr <i@stingr.net> - 2.5-1
+- new upstream version
+
 * Wed Jul 21 2010 David Malcolm <dmalcolm@redhat.com> - 2.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Features/Python_2.7/MassRebuild
 
