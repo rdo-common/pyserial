@@ -1,5 +1,3 @@
-%{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
-
 Summary: Python serial port access library
 Name: pyserial
 Version: 2.6
@@ -11,6 +9,7 @@ Group: Development/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 URL: http://pyserial.sourceforge.net
 BuildRequires: python-devel
+BuildRequires: python3-devel
 BuildArch: noarch
 
 %description
@@ -19,17 +18,35 @@ for standard Python running on Windows, Linux, BSD (possibly any POSIX
 compilant system) and Jython. The module named "serial" automaticaly selects
 the appropriate backend.
 
+%package -n python3-pyserial
+Summary: Python serial port access library
+
+%description -n python3-pyserial
+This module encapsulates the access for the serial port. It provides backends
+for standard Python running on Windows, Linux, BSD (possibly any POSIX
+compilant system) and Jython. The module named "serial" automaticaly selects
+the appropriate backend.
+
+
 %prep
 export UNZIP="-aa"
 %setup -q
 %patch0 -p1
+rm -rf %{py3dir}
+cp -a . %{py3dir}
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
+CFLAGS="$RPM_OPT_FLAGS" %{__python2} setup.py build
+pushd %{py3dir}
+CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
+popd
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__python} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
+pushd %{py3dir}
+%{__python3} setup.py install --skip-build --root $RPM_BUILD_ROOT
+popd
+%{__python2} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -40,7 +57,14 @@ rm -rf $RPM_BUILD_ROOT
 %{python_sitelib}/*
 %{_bindir}/miniterm.py
 
+%files -n python3-pyserial
+%doc LICENSE.txt CHANGES.txt README.txt examples
+%{python3_sitelib}/*
+
 %changelog
+* Sat Sep 07 2013 Till Maas <opensource@till.name> - 2.6-7
+- Add python3 package
+
 * Sat Sep 07 2013 Paul P. Komkoff <i@stingr.net> - 2.6-6
 - patched to allow arbitrary speeds bz#982368
 
