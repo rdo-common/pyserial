@@ -1,7 +1,7 @@
 Summary: Python serial port access library
 Name: pyserial
 Version: 2.6
-Release: 6%{?dist}
+Release: 7%{?dist}
 Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 Patch0: pyserial-speed.patch
 License: Python
