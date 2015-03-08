@@ -1,9 +1,8 @@
 Summary: Python serial port access library
 Name: pyserial
-Version: 2.6
-Release: 9%{?dist}
+Version: 2.7
+Release: 1%{?dist}
 Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
-Patch0: pyserial-speed.patch
 License: Python
 Group: Development/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -31,7 +30,6 @@ the appropriate backend.
 %prep
 export UNZIP="-aa"
 %setup -q
-%patch0 -p1
 rm -rf %{py3dir}
 cp -a . %{py3dir}
 
@@ -62,6 +60,9 @@ rm -rf $RPM_BUILD_ROOT
 %{python3_sitelib}/*
 
 %changelog
+* Sun Mar 08 2015 Paul Komkoff <i@stingr.net> 2.7-1
+- new upstream version
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.6-9
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
