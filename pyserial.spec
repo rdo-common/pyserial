@@ -1,7 +1,7 @@
 Summary: Python serial port access library
 Name: pyserial
 Version: 2.7
-Release: 2%{?dist}
+Release: 3%{?dist}
 Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 License: Python
 Group: Development/Libraries
@@ -43,8 +43,13 @@ popd
 rm -rf $RPM_BUILD_ROOT
 pushd %{py3dir}
 %{__python3} setup.py install --skip-build --root $RPM_BUILD_ROOT
+mv %{buildroot}/%{_bindir}/miniterm.py %{buildroot}/%{_bindir}/miniterm-3.py
+ln -sf %{_bindir}/miniterm.py-3 %{buildroot}/%{_bindir}/miniterm-%{python3_version}.py
+
 popd
 %{__python2} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
+cp %{buildroot}/%{_bindir}/miniterm.py %{buildroot}/%{_bindir}/miniterm-2.py
+ln -sf %{_bindir}/miniterm.py-2 %{buildroot}/%{_bindir}/miniterm-%{python2_version}.py
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -54,12 +59,20 @@ rm -rf $RPM_BUILD_ROOT
 %doc LICENSE.txt CHANGES.txt README.txt examples
 %{python_sitelib}/*
 %{_bindir}/miniterm.py
+%{_bindir}/miniterm-2.py
+%{_bindir}/miniterm-%{python2_version}.py
 
 %files -n python3-pyserial
 %doc LICENSE.txt CHANGES.txt README.txt examples
 %{python3_sitelib}/*
+%{_bindir}/miniterm-3.py
+%{_bindir}/miniterm-%{python3_version}.py
 
 %changelog
+* Mon Nov 02 2015 Michal Cyprian <mcyprian@redhat.com> - 2.7-3
+- Resolve python3 dependency problem, make miniterm.py python2 script, add
+  python3 version of the script
+
 * Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.7-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
