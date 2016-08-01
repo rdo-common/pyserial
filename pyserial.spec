@@ -1,7 +1,7 @@
 Summary: Python serial port access library
 Name: pyserial
-Version: 2.7
-Release: 6%{?dist}
+Version: 3.1.1
+Release: 1%{?dist}
 Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 License: Python
 Group: Development/Libraries
@@ -56,19 +56,22 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%doc LICENSE.txt CHANGES.txt README.txt examples
+%doc LICENSE.txt CHANGES.rst README.rst examples
 %{python_sitelib}/*
 %{_bindir}/miniterm.py
 %{_bindir}/miniterm-2.py
 %{_bindir}/miniterm-%{python2_version}.py
 
 %files -n python3-pyserial
-%doc LICENSE.txt CHANGES.txt README.txt examples
+%doc LICENSE.txt CHANGES.rst README.rst examples
 %{python3_sitelib}/*
 %{_bindir}/miniterm-3.py
 %{_bindir}/miniterm-%{python3_version}.py
 
 %changelog
+* Mon Aug 1 2016 Paul Komkoff <i@stingr.net> 3.1.1-1
+- new upstream version
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.7-6
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
