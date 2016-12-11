@@ -1,7 +1,7 @@
 Summary: Python serial port access library
 Name: pyserial
 Version: 3.1.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 License: Python
 Group: Development/Libraries
@@ -69,6 +69,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/miniterm-%{python3_version}.py
 
 %changelog
+* Fri Dec 09 2016 Charalampos Stratakis <cstratak@redhat.com> - 3.1.1-2
+- Rebuild for Python 3.6
+
 * Mon Aug 1 2016 Paul Komkoff <i@stingr.net> 3.1.1-1
 - new upstream version
 
