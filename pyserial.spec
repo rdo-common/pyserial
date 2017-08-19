@@ -1,7 +1,7 @@
 Summary: Python serial port access library
 Name: pyserial
 Version: 3.1.1
-Release: 4%{?dist}
+Release: 5%{?dist}
 Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 License: Python
 Group: Development/Libraries
@@ -11,11 +11,22 @@ BuildRequires: python-devel
 BuildRequires: python3-devel
 BuildArch: noarch
 
-%description
-This module encapsulates the access for the serial port. It provides backends
-for standard Python running on Windows, Linux, BSD (possibly any POSIX
-compilant system) and Jython. The module named "serial" automaticaly selects
+%global _description\
+This module encapsulates the access for the serial port. It provides backends\
+for standard Python running on Windows, Linux, BSD (possibly any POSIX\
+compilant system) and Jython. The module named "serial" automaticaly selects\
 the appropriate backend.
+
+%description %_description
+
+%package -n python2-pyserial
+Summary: %summary
+%{?python_provide:%python_provide python2-pyserial}
+# Remove before F30
+Provides: pyserial%{?_isa} = %{version}-%{release}
+Obsoletes: pyserial < %{version}-%{release}
+
+%description -n python2-pyserial %_description
 
 %package -n python3-pyserial
 Summary: Python serial port access library
@@ -54,7 +65,7 @@ ln -sf %{_bindir}/miniterm.py-2 %{buildroot}/%{_bindir}/miniterm-%{python2_versi
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -n python2-pyserial
 %defattr(-,root,root)
 %doc LICENSE.txt CHANGES.rst README.rst examples
 %{python_sitelib}/*
@@ -69,6 +80,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/miniterm-%{python3_version}.py
 
 %changelog
+* Sat Aug 19 2017 Zbigniew Jędrzejewski-Szmek <zbyszek@in.waw.pl> - 3.1.1-5
+- Python 2 binary package renamed to python2-pyserial
+  See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3
+
 * Thu Jul 27 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.1.1-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
