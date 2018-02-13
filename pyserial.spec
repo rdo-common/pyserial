@@ -5,7 +5,6 @@ Release: 6%{?dist}
 Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 License: Python
 Group: Development/Libraries
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 URL: http://pyserial.sourceforge.net
 BuildRequires: python-devel
 BuildRequires: python3-devel
