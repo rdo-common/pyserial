@@ -61,9 +61,6 @@ popd
 cp %{buildroot}/%{_bindir}/miniterm.py %{buildroot}/%{_bindir}/miniterm-2.py
 ln -sf %{_bindir}/miniterm.py-2 %{buildroot}/%{_bindir}/miniterm-%{python2_version}.py
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files -n python2-pyserial
 %defattr(-,root,root)
 %doc LICENSE.txt CHANGES.rst README.rst examples
