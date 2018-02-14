@@ -1,12 +1,12 @@
 Summary: Python serial port access library
 Name: pyserial
 Version: 3.1.1
-Release: 6%{?dist}
+Release: 7%{?dist}
 Source0: http://easynews.dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
 License: Python
 Group: Development/Libraries
 URL: http://pyserial.sourceforge.net
-BuildRequires: python-devel
+BuildRequires: python2-devel
 BuildRequires: python3-devel
 BuildArch: noarch
 
@@ -76,6 +76,10 @@ ln -sf %{_bindir}/miniterm.py-2 %{buildroot}/%{_bindir}/miniterm-%{python2_versi
 %{_bindir}/miniterm-%{python3_version}.py
 
 %changelog
+* Wed Feb 14 2018 Iryna Shcherbina <ishcherb@redhat.com> - 3.1.1-7
+- Update Python 2 dependency declarations to new packaging standards
+  (See https://fedoraproject.org/wiki/FinalizingFedoraSwitchtoPython3)
+
 * Fri Feb 09 2018 Fedora Release Engineering <releng@fedoraproject.org> - 3.1.1-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
