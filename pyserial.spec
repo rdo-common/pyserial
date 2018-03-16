@@ -7,7 +7,6 @@ License: Python
 Group: Development/Libraries
 URL: http://pyserial.sourceforge.net
 BuildRequires: python2-devel
-BuildRequires: python3-devel
 BuildArch: noarch
 
 %global _description\
@@ -27,36 +26,16 @@ Obsoletes: pyserial < %{version}-%{release}
 
 %description -n python2-pyserial %_description
 
-%package -n python3-pyserial
-Summary: Python serial port access library
-
-%description -n python3-pyserial
-This module encapsulates the access for the serial port. It provides backends
-for standard Python running on Windows, Linux, BSD (possibly any POSIX
-compilant system) and Jython. The module named "serial" automaticaly selects
-the appropriate backend.
-
 
 %prep
 export UNZIP="-aa"
 %setup -q
-rm -rf %{py3dir}
-cp -a . %{py3dir}
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" %{__python2} setup.py build
-pushd %{py3dir}
-CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
-popd
 
 %install
 rm -rf $RPM_BUILD_ROOT
-pushd %{py3dir}
-%{__python3} setup.py install --skip-build --root $RPM_BUILD_ROOT
-mv %{buildroot}/%{_bindir}/miniterm.py %{buildroot}/%{_bindir}/miniterm-3.py
-ln -sf %{_bindir}/miniterm.py-3 %{buildroot}/%{_bindir}/miniterm-%{python3_version}.py
-
-popd
 %{__python2} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
 cp %{buildroot}/%{_bindir}/miniterm.py %{buildroot}/%{_bindir}/miniterm-2.py
 ln -sf %{_bindir}/miniterm.py-2 %{buildroot}/%{_bindir}/miniterm-%{python2_version}.py
@@ -68,12 +47,6 @@ ln -sf %{_bindir}/miniterm.py-2 %{buildroot}/%{_bindir}/miniterm-%{python2_versi
 %{_bindir}/miniterm.py
 %{_bindir}/miniterm-2.py
 %{_bindir}/miniterm-%{python2_version}.py
-
-%files -n python3-pyserial
-%doc LICENSE.txt CHANGES.rst README.rst examples
-%{python3_sitelib}/*
-%{_bindir}/miniterm-3.py
-%{_bindir}/miniterm-%{python3_version}.py
 
 %changelog
 * Wed Feb 14 2018 Iryna Shcherbina <ishcherb@redhat.com> - 3.1.1-7
